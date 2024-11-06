@@ -5,7 +5,7 @@ const taskList = document.getElementById('task-list');
 const API_URL = 'https://backendrpl.netlify.app/.netlify/functions'; // Update with your backend URL
 
 async function fetchTasks() {
-    const response = await fetch(`${API_URL}/getTasks`);
+    const response = await fetch(`${API_URL}/getTasks.js`);
     const tasks = await response.json();
     renderTasks(tasks);
 }
@@ -37,7 +37,7 @@ async function addTask(event) {
     event.preventDefault();
     const title = taskTitleInput.value;
 
-    await fetch(`${API_URL}/createTask`, {
+    await fetch(`${API_URL}/createTask.js`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ async function addTask(event) {
 }
 
 async function deleteTask(id) {
-    await fetch(`${API_URL}/deleteTask`, {
+    await fetch(`${API_URL}/deleteTask.js`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ async function deleteTask(id) {
 async function editTask(id, currentTitle) {
     const newTitle = prompt('Edit Task Title:', currentTitle);
     if (newTitle) {
-        await fetch(`${API_URL}/updateTask`, {
+        await fetch(`${API_URL}/updateTask.js`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
